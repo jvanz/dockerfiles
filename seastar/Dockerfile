@@ -11,10 +11,11 @@ WORKDIR /seastar
 RUN git submodule update --init --recursive
 RUN ./install-dependencies.sh
 RUN ./configure.py
-RUN ninja -j1
+RUN ninja
+
+RUN cp /seastar/build/release/seastar.pc /usr/share/pkgconfig
 
 WORKDIR /
 
-RUN rm -rf seastar
 
 CMD ["bash"]
